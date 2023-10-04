@@ -5,7 +5,7 @@ A demonstration of the latest web APIs
 ## Ideas
 
 - Copy (Demo: copy button, show code between back in the days and nowadays)
-- Sensors (Demo: show a 3d smartphone and allow rotating it)
+- Sensors (Demo: show a 3d cube and allow rotating it)
 - Speech Recognition (Demo: access the microphone and write on screen)
 - Text to speech (Demo: read out the recorded stuff)
 - Server Sent Events
