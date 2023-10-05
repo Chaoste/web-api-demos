@@ -17,3 +17,4 @@ Optional: PWA, Battery, Server Sent Events, Geolocation (Demo: show a map and th
 
 - Favicon generator + manifest
 - Demonstrate on peoples phones
+- Render code snippets in the app

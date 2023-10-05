@@ -41,7 +41,7 @@ export const styles = {
     alignItems: "center",
     justifyContent: "center",
     gap: 16,
-    padding: 8,
+    padding: 16,
   }),
   hidden: css({
     visibility: "hidden",

@@ -7,5 +7,7 @@ export const styles = {
     gap: 16,
     alignItems: "center",
     justifyContent: "center",
+    flexWrap: "wrap",
+    padding: 16,
   }),
 };
