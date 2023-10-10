@@ -11,7 +11,6 @@ const MAX_SLIDES = 6;
 
 function App() {
   const [slideIndex, setSlideIndex] = React.useState(0);
-  const [isProgressHidden, setProgressHidden] = React.useState(true);
   return (
     <div className="App">
       {slideIndex !== 0 && (
@@ -27,43 +26,30 @@ function App() {
       <div className={styles.playground}>
         {slideIndex === 0 && (
           <>
-            <h1>
-              Web APIs - How cool is that?{" "}
-              <IconButton
-                variant="transparent"
-                aria-label="Next slide"
-                icon={<ArrowForwardIcon />}
-                onClick={() => {
-                  setSlideIndex((slideIndex) => slideIndex + 1);
-                  setProgressHidden(false);
-                }}
-              />
-            </h1>
+            <h1>Web APIs - How cool is that?</h1>
           </>
         )}
 
         {slideIndex === 1 && <CopyPasteSlide />}
         {slideIndex === 2 && <Cube />}
       </div>
-      {!isProgressHidden && (
-        <div className={styles.navigationBar}>
-          <IconButton
-            variant="transparent"
-            aria-label="Previous slide"
-            icon={<ArrowBackwardIcon />}
-            onClick={() => setSlideIndex((slideIndex) => slideIndex - 1)}
-            className={cx({ [styles.hidden]: slideIndex === 0 })}
-          />
-          <progress max={MAX_SLIDES} value={slideIndex}></progress>
-          <IconButton
-            variant="transparent"
-            aria-label="Next slide"
-            icon={<ArrowForwardIcon />}
-            onClick={() => setSlideIndex((slideIndex) => slideIndex + 1)}
-            className={cx({ [styles.hidden]: slideIndex === MAX_SLIDES })}
-          />
-        </div>
-      )}
+      <div className={styles.navigationBar}>
+        <IconButton
+          variant="transparent"
+          aria-label="Previous slide"
+          icon={<ArrowBackwardIcon />}
+          onClick={() => setSlideIndex((slideIndex) => slideIndex - 1)}
+          className={cx({ [styles.hidden]: slideIndex === 0 })}
+        />
+        <progress max={MAX_SLIDES} value={slideIndex}></progress>
+        <IconButton
+          variant="transparent"
+          aria-label="Next slide"
+          icon={<ArrowForwardIcon />}
+          onClick={() => setSlideIndex((slideIndex) => slideIndex + 1)}
+          className={cx({ [styles.hidden]: slideIndex === MAX_SLIDES })}
+        />
+      </div>
     </div>
   );
 }

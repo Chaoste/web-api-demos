@@ -10,6 +10,48 @@ export const styles = {
     alignItems: "center",
     justifyContent: "center",
   }),
+  status: css({
+    position: 'absolute',
+    top: 64,
+    left: 16,
+    padding: 6,
+    borderRadius: 8,
+    maxWidth: '250px',
+    border: '1px solid lightgray',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    cursor: 'pointer',
+    '&:before': {
+      backgroundColor: 'red',
+      content: '""',
+      display: "inline-block",
+      height: 15,
+      width: 15,
+      borderRadius: "100%",
+      marginBottom: -2,
+      marginRight: 8,
+    }
+  }),
+  statusOpen: css({
+    whiteSpace: 'initial',
+    '&:before': {
+      display: "block",
+      margin: "0 auto",
+    }
+  }),
+  statusLoading: css({
+    whiteSpace: 'initial',
+    '&:before': {
+      backgroundColor: 'yellow',
+    }
+  }),
+  statusSuccess: css({
+    whiteSpace: 'initial',
+    '&:before': {
+      backgroundColor: 'green',
+    }
+  }),
   cuboid: css({
     "--width": "100px",
     "--height": "100px",
@@ -17,7 +59,8 @@ export const styles = {
     width: "var(--width)",
     height: "var(--height)",
     position: "relative",
-    transform: "rotateX(-14deg) rotateY(-22deg)",
+    transform: "rotateX(-14deg) rotateY(-22deg) rotateZ(0deg)",
+    transition: 'transform 100ms ease-in-out',
     transformStyle: "preserve-3d",
     marginBottom: "100px",
     willChange: "transform",
