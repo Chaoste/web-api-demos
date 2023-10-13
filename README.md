@@ -15,6 +15,7 @@ Optional: PWA, Battery, Server Sent Events, Geolocation (Demo: show a map and th
 
 ## TODO
 
+- Caniuse
 - Favicon generator + manifest
 - Demonstrate on peoples phones
 - Render code snippets in the app

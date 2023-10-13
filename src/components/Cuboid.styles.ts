@@ -1,4 +1,13 @@
-import { css } from "@emotion/css";
+import { css, keyframes } from "@emotion/css";
+
+const blinking = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`
 
 // Inspritations:
 // - https://css-tricks.com/css-in-3d-learning-to-think-in-cubes-instead-of-boxes/
@@ -22,6 +31,9 @@ export const styles = {
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     cursor: 'pointer',
+    boxShadow: '2px 2px 5px gray',
+    zIndex: 5,
+    background: 'white',
     '&:before': {
       backgroundColor: 'red',
       content: '""',
@@ -35,10 +47,6 @@ export const styles = {
   }),
   statusOpen: css({
     whiteSpace: 'initial',
-    '&:before': {
-      display: "block",
-      margin: "0 auto",
-    }
   }),
   statusLoading: css({
     whiteSpace: 'initial',
@@ -50,6 +58,12 @@ export const styles = {
     whiteSpace: 'initial',
     '&:before': {
       backgroundColor: 'green',
+    }
+  }),
+  statusBlinking: css({
+    '&:before': {
+      animation: `${blinking} 1.5s ease-in-out infinite`,
+      animationDirection: "alternate",
     }
   }),
   cuboid: css({

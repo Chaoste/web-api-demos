@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
-import { styles } from "./Cube.styles";
+import { styles } from "./Cuboid.styles";
 import { cx } from "@emotion/css";
 import * as THREE from "three";
+import { Cuboid } from "./Cuboid";
 
-// Alternatives:
-// - https://codepen.io/jonDiaz/pen/vMKogO
-// - https://polypane.app/css-3d-transform-examples/
-// - https://css-tricks.com/simplifying-css-cubes-custom-properties/
-// - https://codepen.io/iGeriya/pen/ZLzobK
-export const Cube = () => {
+export const OrientationSensorSlide = () => {
   const [rotations, setRotations] = React.useState<[number, number, number]>([
     -5, -10, 0,
   ]);
@@ -80,6 +76,7 @@ export const Cube = () => {
       <div
         className={cx(styles.status, {
           [styles.statusLoading]: status === undefined,
+          [styles.statusBlinking]: status === undefined,
           [styles.statusSuccess]: status === true,
           [styles.statusOpen]: isStatusOpen,
         })}
@@ -87,26 +84,17 @@ export const Cube = () => {
       >
         <span>
           {status === true
-            ? "Connected"
+            ? "Sensor Connected"
             : status === undefined
-            ? "Connecting"
+            ? "Connecting..."
             : status}
         </span>
       </div>
-      <div
-        className={styles.cuboid}
+      <Cuboid
         style={{
           transform: `rotateX(${rotations[0]}deg) rotateY(${rotations[1]}deg) rotateZ(${rotations[2]}deg)`,
         }}
-      >
-        <div className={styles.side}></div>
-        <div className={styles.side}></div>
-        <div className={styles.side}></div>
-        <div className={styles.side}></div>
-        <div className={styles.side}></div>
-        <div className={styles.side}></div>
-      </div>
-
+      />
       <p>Tilt your phone.</p>
     </div>
   );

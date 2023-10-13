@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
-import { Cube } from "./Cube";
+import { OrientationSensorSlide } from "./OrientationSensorSlide";
 import { IconButton } from "@contentful/f36-components";
 import { ArrowBackwardIcon, ArrowForwardIcon } from "@contentful/f36-icons";
 import { styles } from "./App.styles";
 import { cx } from "@emotion/css";
 import { CopyPasteSlide } from "./CopyPasteSlide";
+import { SpeechRecognitionSlide } from "./SpeechRecognitionSlide";
 
 const MAX_SLIDES = 6;
 
@@ -31,7 +32,8 @@ function App() {
         )}
 
         {slideIndex === 1 && <CopyPasteSlide />}
-        {slideIndex === 2 && <Cube />}
+        {slideIndex === 2 && <OrientationSensorSlide />}
+        {slideIndex === 3 && <SpeechRecognitionSlide />}
       </div>
       <div className={styles.navigationBar}>
         <IconButton
