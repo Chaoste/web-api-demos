@@ -13,13 +13,16 @@ export const Cuboid = (
   >
 ) => {
   return (
-    <div className={styles.cuboid} {...props}>
-      <div className={styles.side}></div>
-      <div className={styles.side}></div>
-      <div className={styles.side}></div>
-      <div className={styles.side}></div>
-      <div className={styles.side}></div>
-      <div className={styles.side}></div>
+    <div className={styles.cuboidWrapper}>
+      <div className={styles.cuboid} {...props}>
+        <div className={styles.side}></div>
+        <div className={styles.side}></div>
+        <div className={styles.side}></div>
+        <div className={styles.side}></div>
+        <div className={styles.side}></div>
+        <div className={styles.side}></div>
+      </div>
+      {props.children}
     </div>
   );
 };

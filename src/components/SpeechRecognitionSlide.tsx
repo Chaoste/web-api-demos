@@ -2,38 +2,24 @@ import React, { useEffect } from "react";
 import { styles } from "./Cuboid.styles";
 import { cx } from "@emotion/css";
 import { Cuboid } from "./Cuboid";
+import { applyDirection } from "./utils";
+import { Heading } from "@contentful/f36-components";
 
 const STATUS_ACTIVE = true;
 const STATUS_INACTIVE = undefined;
-const directions = ["left", "up", "right", "down", "barrel", "flip", "stop"];
+const directions = [
+  "left",
+  "up",
+  "right",
+  "down",
+  "barrel",
+  "flip",
+  "flipendo",
+  "stop",
+];
 const grammar = `#JSGF V1.0; grammar directions; public <direction> = ${directions.join(
   " | "
 )};`;
-
-const applyDirection = (
-  rotations: [number, number, number],
-  direction: string
-): [number, number, number] => {
-  if (direction.includes("left")) {
-    return [rotations[0], rotations[1] - 90, rotations[2]];
-  }
-  if (direction.includes("right")) {
-    return [rotations[0], rotations[1] + 90, rotations[2]];
-  }
-  if (direction.includes("up")) {
-    return [rotations[0] + 90, rotations[1], rotations[2]];
-  }
-  if (direction.includes("down")) {
-    return [rotations[0] - 90, rotations[1], rotations[2]];
-  }
-  if (direction.includes("flip")) {
-    return [rotations[0], rotations[1], rotations[2] - 90];
-  }
-  if (direction.includes("barrel")) {
-    return [rotations[0], rotations[1], rotations[2] + 360];
-  }
-  return rotations;
-};
 
 const createSpeechRecognition = () => {
   const recognition = new ((window as any).SpeechRecognition ||
@@ -82,6 +68,13 @@ export const SpeechRecognitionSlide = () => {
     } catch (error) {
       setStatus(`Failed initialising speech recognition: ${error}`);
     }
+    return () => {
+      try {
+        recognition.current?.stop();
+      } catch (error) {
+        console.error(error);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -112,6 +105,9 @@ export const SpeechRecognitionSlide = () => {
 
   return (
     <div className={styles.root}>
+      <Heading as="h2" marginBottom="spacingL">
+        Speech Recognition
+      </Heading>
       <div
         className={cx(styles.status, {
           [styles.statusLoading]: status === undefined,
@@ -150,6 +146,7 @@ export const SpeechRecognitionSlide = () => {
         style={{
           transform: `rotateX(${rotations[0]}deg) rotateY(${rotations[1]}deg) rotateZ(${rotations[2]}deg)`,
           transitionDuration: "300ms",
+          marginBottom: -52,
         }}
       />
       <p>Talk to me.</p>

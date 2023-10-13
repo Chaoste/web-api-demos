@@ -76,8 +76,11 @@ export const styles = {
     transform: "rotateX(-14deg) rotateY(-22deg) rotateZ(0deg)",
     transition: 'transform 100ms ease-in-out',
     transformStyle: "preserve-3d",
-    marginBottom: "100px",
     willChange: "transform",
+  }),
+  cuboidWrapper: css({
+    position: "relative",
+    marginBottom: "100px",
   }),
   side: css({
     backgroundColor: "hsla(0, 0%, 100%, 0.2)",

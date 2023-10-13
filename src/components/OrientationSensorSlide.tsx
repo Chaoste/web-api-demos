@@ -3,6 +3,7 @@ import { styles } from "./Cuboid.styles";
 import { cx } from "@emotion/css";
 import * as THREE from "three";
 import { Cuboid } from "./Cuboid";
+import { Heading } from "@contentful/f36-components";
 
 export const OrientationSensorSlide = () => {
   const [rotations, setRotations] = React.useState<[number, number, number]>([
@@ -73,6 +74,9 @@ export const OrientationSensorSlide = () => {
 
   return (
     <div className={styles.root}>
+      <Heading as="h2" marginBottom="spacingL">
+        Orientation Sensor
+      </Heading>
       <div
         className={cx(styles.status, {
           [styles.statusLoading]: status === undefined,

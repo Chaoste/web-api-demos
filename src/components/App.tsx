@@ -1,12 +1,13 @@
 import React from "react";
 import "./App.css";
 import { OrientationSensorSlide } from "./OrientationSensorSlide";
-import { IconButton } from "@contentful/f36-components";
+import { Heading, IconButton } from "@contentful/f36-components";
 import { ArrowBackwardIcon, ArrowForwardIcon } from "@contentful/f36-icons";
 import { styles } from "./App.styles";
 import { cx } from "@emotion/css";
 import { CopyPasteSlide } from "./CopyPasteSlide";
 import { SpeechRecognitionSlide } from "./SpeechRecognitionSlide";
+import { SpeechSynthesisSlide } from "./SpeechSynthesisSlide";
 
 const MAX_SLIDES = 6;
 
@@ -26,14 +27,13 @@ function App() {
       )}
       <div className={styles.playground}>
         {slideIndex === 0 && (
-          <>
-            <h1>Web APIs - How cool is that?</h1>
-          </>
+          <Heading as="h1">Web APIs - How cool is that?</Heading>
         )}
 
         {slideIndex === 1 && <CopyPasteSlide />}
         {slideIndex === 2 && <OrientationSensorSlide />}
         {slideIndex === 3 && <SpeechRecognitionSlide />}
+        {slideIndex === 4 && <SpeechSynthesisSlide />}
       </div>
       <div className={styles.navigationBar}>
         <IconButton

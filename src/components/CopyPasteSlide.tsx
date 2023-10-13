@@ -1,6 +1,11 @@
 import React, { useCallback } from "react";
 import { styles } from "./CopyPasteSlide.styles";
-import { Button, TextInput, Notification } from "@contentful/f36-components";
+import {
+  Button,
+  TextInput,
+  Notification,
+  Heading,
+} from "@contentful/f36-components";
 import { CopyIcon, PageIcon, DeleteIcon } from "@contentful/f36-icons";
 
 export const CopyPasteSlide = () => {
@@ -28,6 +33,9 @@ export const CopyPasteSlide = () => {
   }, [setInputText]);
   return (
     <div className={styles.root}>
+      <Heading as="h2" marginBottom="spacingL">
+        Clipboard API
+      </Heading>
       <TextInput
         value={inputText}
         onChange={(event) => setInputText(event.target.value)}
