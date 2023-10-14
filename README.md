@@ -15,7 +15,7 @@ Optional: PWA, Battery, Server Sent Events, Geolocation (Demo: show a map and th
 
 ## TODO
 
-- Caniuse
+- Caniuse via info icon
 - Router
 - Favicon generator + manifest
 - Demonstrate on peoples phones

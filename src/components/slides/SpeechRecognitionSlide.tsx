@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { styles } from "./Cuboid.styles";
 import { cx } from "@emotion/css";
 import { Cuboid } from "./Cuboid";
-import { applyDirection } from "./utils";
+import { applyDirection } from "../utils";
 import { Heading } from "@contentful/f36-components";
 
 const STATUS_ACTIVE = true;

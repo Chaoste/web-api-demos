@@ -10,7 +10,7 @@ import {
   ChevronRightIcon,
   ChevronUpIcon,
 } from "@contentful/f36-icons";
-import { applyDirection } from "./utils";
+import { applyDirection } from "../utils";
 
 export const SpeechSynthesisSlide = () => {
   const [rotations, setRotations] = React.useState<[number, number, number]>([

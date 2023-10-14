@@ -1,12 +1,9 @@
 import React, { useCallback } from "react";
 import { styles } from "./CopyPasteSlide.styles";
-import {
-  Button,
-  TextInput,
-  Notification,
-  Heading,
-} from "@contentful/f36-components";
+import { Button, TextInput, Notification } from "@contentful/f36-components";
 import { CopyIcon, PageIcon, DeleteIcon } from "@contentful/f36-icons";
+import { SlideHeader } from "../base/SlideHeader";
+import clipboardScreenshot from "../compatibility/clipboard.png";
 
 export const CopyPasteSlide = () => {
   const [inputText, setInputText] = React.useState("Hello World");
@@ -33,9 +30,11 @@ export const CopyPasteSlide = () => {
   }, [setInputText]);
   return (
     <div className={styles.root}>
-      <Heading as="h2" marginBottom="spacingL">
-        Clipboard API
-      </Heading>
+      <SlideHeader
+        title="Clipboard API"
+        link="https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API#browser_compatibility"
+        imgSrc={clipboardScreenshot}
+      />
       <TextInput
         value={inputText}
         onChange={(event) => setInputText(event.target.value)}

@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
-import { OrientationSensorSlide } from "./OrientationSensorSlide";
+import { OrientationSensorSlide } from "./slides/OrientationSensorSlide";
 import { Heading, IconButton } from "@contentful/f36-components";
 import { ArrowBackwardIcon, ArrowForwardIcon } from "@contentful/f36-icons";
 import { styles } from "./App.styles";
 import { cx } from "@emotion/css";
-import { CopyPasteSlide } from "./CopyPasteSlide";
-import { SpeechRecognitionSlide } from "./SpeechRecognitionSlide";
-import { SpeechSynthesisSlide } from "./SpeechSynthesisSlide";
+import { CopyPasteSlide } from "./slides/CopyPasteSlide";
+import { SpeechRecognitionSlide } from "./slides/SpeechRecognitionSlide";
+import { SpeechSynthesisSlide } from "./slides/SpeechSynthesisSlide";
 
 const MAX_SLIDES = 6;
 
