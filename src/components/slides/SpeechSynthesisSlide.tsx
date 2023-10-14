@@ -67,6 +67,7 @@ export const SpeechSynthesisSlide = () => {
         link="https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis#browser_compatibility"
         imgSrc={speechSynthesisScreenshot}
         marginBottom="spacing2Xl"
+        howToSrc="https://dev.to/jankapunkt/cross-browser-speech-synthesis-the-hard-way-and-the-easy-way-353"
       />
       <div
         className={cx(cuboidStyles.status, {

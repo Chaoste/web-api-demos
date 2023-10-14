@@ -12,11 +12,13 @@ export const SlideHeader = ({
   title,
   link,
   imgSrc,
+  howToSrc,
   marginBottom = "spacingL",
 }: {
   title: string;
   link: string;
   imgSrc: string;
+  howToSrc?: string;
   marginBottom?: HeadingProps["marginBottom"];
 }) => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -54,9 +56,22 @@ export const SlideHeader = ({
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
+                className={styles.link}
               >
                 See data in MDN
               </TextLink>
+              {howToSrc && (
+                <TextLink
+                  icon={<ExternalLinkIcon />}
+                  alignIcon="end"
+                  href={howToSrc}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.link}
+                >
+                  Guide for advanced usage
+                </TextLink>
+              )}
             </Modal.Content>
           </>
         )}

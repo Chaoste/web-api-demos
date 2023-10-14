@@ -23,10 +23,13 @@ export const styles = {
     }
   }),
   modalContent: css({
-    textAlign: "right",
-    flexDirection: "column",
+    // textAlign: "right",
   }),
   modal: css({
     height: "auto !important",
+  }),
+  link: css({
+    display: "flex !important",
+    justifyContent: "flex-end !important",
   })
 }
