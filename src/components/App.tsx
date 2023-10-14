@@ -8,6 +8,7 @@ import { cx } from "@emotion/css";
 import { CopyPasteSlide } from "./slides/CopyPasteSlide";
 import { SpeechRecognitionSlide } from "./slides/SpeechRecognitionSlide";
 import { SpeechSynthesisSlide } from "./slides/SpeechSynthesisSlide";
+import { ShareSlide } from "./slides/ShareSlide";
 
 const MAX_SLIDES = 6;
 
@@ -34,6 +35,7 @@ function App() {
         {slideIndex === 2 && <OrientationSensorSlide />}
         {slideIndex === 3 && <SpeechRecognitionSlide />}
         {slideIndex === 4 && <SpeechSynthesisSlide />}
+        {slideIndex === 5 && <ShareSlide />}
       </div>
       <div className={styles.navigationBar}>
         <IconButton
