@@ -1,9 +1,10 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { styles as cuboidStyles } from "./Cuboid.styles";
 import { styles } from "./SpeechSynthesisSlide.styles";
 import { cx } from "@emotion/css";
 import { Cuboid } from "./Cuboid";
-import { Heading, IconButton } from "@contentful/f36-components";
+import { IconButton } from "@contentful/f36-components";
+import speechSynthesisScreenshot from "../compatibility/speech-synthesis.png";
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
@@ -11,6 +12,10 @@ import {
   ChevronUpIcon,
 } from "@contentful/f36-icons";
 import { applyDirection } from "../utils";
+import { SlideHeader } from "../base/SlideHeader";
+
+const STATUS_ACTIVE = true;
+const STATUS_INACTIVE = undefined;
 
 export const SpeechSynthesisSlide = () => {
   const [rotations, setRotations] = React.useState<[number, number, number]>([
@@ -34,28 +39,52 @@ export const SpeechSynthesisSlide = () => {
   const createClickHandler = useCallback(
     (command: string) => () => {
       speak(command);
+      setStatus(STATUS_ACTIVE);
       setRotations(applyDirection(rotations, command));
     },
     [rotations, speak]
   );
 
+  useEffect(() => {
+    if (status === STATUS_ACTIVE) {
+      const interval = setInterval(() => {
+        if (
+          status === STATUS_ACTIVE &&
+          "speechSynthesis" in window &&
+          !window.speechSynthesis.speaking
+        ) {
+          setStatus(STATUS_INACTIVE);
+        }
+      }, 100);
+      return () => clearInterval(interval);
+    }
+  }, [status]);
+
   return (
     <div className={cuboidStyles.root}>
-      <Heading as="h2" marginBottom="spacing2Xl">
-        Speech Synthesis
-      </Heading>
-      {status ? (
-        <div
-          className={cx(cuboidStyles.status, {
-            [cuboidStyles.statusOpen]: isStatusOpen,
-          })}
-          onClick={() => setStatusOpen((isOpen) => !isOpen)}
-        >
-          <span>{status}</span>
-        </div>
-      ) : (
-        <></>
-      )}
+      <SlideHeader
+        title="Speech Synthesis"
+        link="https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis#browser_compatibility"
+        imgSrc={speechSynthesisScreenshot}
+        marginBottom="spacing2Xl"
+      />
+      <div
+        className={cx(cuboidStyles.status, {
+          [cuboidStyles.statusLoading]: status === STATUS_INACTIVE,
+          [cuboidStyles.statusSuccess]: status === STATUS_ACTIVE,
+          [cuboidStyles.statusBlinking]: status === STATUS_ACTIVE,
+          [cuboidStyles.statusOpen]: isStatusOpen,
+        })}
+        onClick={() => setStatusOpen((isOpen) => !isOpen)}
+      >
+        <span>
+          {status === STATUS_INACTIVE
+            ? "Ready"
+            : status === STATUS_ACTIVE
+            ? "Speaking"
+            : status}
+        </span>
+      </div>
       <Cuboid
         style={{
           transform: `rotateX(${rotations[0]}deg) rotateY(${rotations[1]}deg) rotateZ(${rotations[2]}deg)`,
@@ -92,7 +121,7 @@ export const SpeechSynthesisSlide = () => {
           onClick={createClickHandler("Turning down")}
         />
       </Cuboid>
-      <p>Click a button.</p>
+      <p>Click on an arrow or the cube directly.</p>
     </div>
   );
 };

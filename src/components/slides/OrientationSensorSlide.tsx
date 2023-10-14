@@ -3,7 +3,8 @@ import { styles } from "./Cuboid.styles";
 import { cx } from "@emotion/css";
 import * as THREE from "three";
 import { Cuboid } from "./Cuboid";
-import { Heading } from "@contentful/f36-components";
+import { SlideHeader } from "../base/SlideHeader";
+import orientationScreenshot from "../compatibility/orientation.png";
 
 export const OrientationSensorSlide = () => {
   const [rotations, setRotations] = React.useState<[number, number, number]>([
@@ -15,8 +16,7 @@ export const OrientationSensorSlide = () => {
 
   useEffect(() => {
     try {
-      // @ts-ignore
-      const sensor = new AbsoluteOrientationSensor({
+      const sensor = new (window as any).AbsoluteOrientationSensor({
         frequency: 20,
         referenceFrame: "device",
       });
@@ -74,9 +74,11 @@ export const OrientationSensorSlide = () => {
 
   return (
     <div className={styles.root}>
-      <Heading as="h2" marginBottom="spacingL">
-        Orientation Sensor
-      </Heading>
+      <SlideHeader
+        title="Orientation Sensor"
+        link="https://developer.mozilla.org/en-US/docs/Web/API/AbsoluteOrientationSensor#browser_compatibility"
+        imgSrc={orientationScreenshot}
+      />
       <div
         className={cx(styles.status, {
           [styles.statusLoading]: status === undefined,

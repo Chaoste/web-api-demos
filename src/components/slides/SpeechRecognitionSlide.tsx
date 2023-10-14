@@ -3,7 +3,8 @@ import { styles } from "./Cuboid.styles";
 import { cx } from "@emotion/css";
 import { Cuboid } from "./Cuboid";
 import { applyDirection } from "../utils";
-import { Heading } from "@contentful/f36-components";
+import { SlideHeader } from "../base/SlideHeader";
+import speechRecognitionScreenshot from "../compatibility/speech-recognition.png";
 
 const STATUS_ACTIVE = true;
 const STATUS_INACTIVE = undefined;
@@ -105,9 +106,11 @@ export const SpeechRecognitionSlide = () => {
 
   return (
     <div className={styles.root}>
-      <Heading as="h2" marginBottom="spacingL">
-        Speech Recognition
-      </Heading>
+      <SlideHeader
+        title="Speech Recognition"
+        link="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API#api.speechrecognition"
+        imgSrc={speechRecognitionScreenshot}
+      />
       <div
         className={cx(styles.status, {
           [styles.statusLoading]: status === undefined,

@@ -25,5 +25,8 @@ export const styles = {
   modalContent: css({
     textAlign: "right",
     flexDirection: "column",
+  }),
+  modal: css({
+    height: "auto !important",
   })
 }
