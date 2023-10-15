@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
-import { styles } from "./Cuboid.styles";
-import { cx } from "@emotion/css";
-import { Cuboid } from "./Cuboid";
+import React, { useCallback, useEffect } from "react";
+import { Cuboid } from "../core/Cuboid";
 import { applyDirection } from "../utils";
-import { SlideHeader } from "../base/SlideHeader";
-import speechRecognitionScreenshot from "../compatibility/speech-recognition.png";
+import { SlideHeader } from "../core/SlideHeader";
+import speechRecognitionScreenshot from "../../compatibility/speech-recognition.png";
+import { STATUS_ACTIVE, STATUS_INACTIVE } from "../../constants";
+import { Flex } from "@contentful/f36-components";
+import { Status } from "../core/Status";
 
-const STATUS_ACTIVE = true;
-const STATUS_INACTIVE = undefined;
 const directions = [
   "left",
   "up",
@@ -45,7 +44,6 @@ export const SpeechRecognitionSlide = () => {
   );
   const [transcript, setTranscript] = React.useState<string>();
   const [confidence, setConfidence] = React.useState<number>(0);
-  const [isStatusOpen, setStatusOpen] = React.useState(false);
   const recognition = React.useRef<any>();
 
   useEffect(() => {
@@ -104,66 +102,53 @@ export const SpeechRecognitionSlide = () => {
     }
   }, [rotations]);
 
+  const toggleRecognition = useCallback(() => {
+    if (status === STATUS_INACTIVE) {
+      try {
+        recognition.current?.start();
+      } catch (error) {
+        console.error(error);
+        recognition.current?.stop();
+      }
+    } else if (status === STATUS_ACTIVE) {
+      try {
+        recognition.current?.stop();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, [status]);
+
   return (
-    <div className={styles.root}>
+    <Flex flexDirection="column" alignItems="center" justifyContent="center">
       <SlideHeader
         title="Speech Recognition"
         link="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API#api.speechrecognition"
         imgSrc={speechRecognitionScreenshot}
       />
-      <div
-        className={cx(styles.status, {
-          [styles.statusLoading]: status === undefined,
-          [styles.statusSuccess]: status === true,
-          [styles.statusBlinking]: status === true,
-          [styles.statusOpen]: isStatusOpen,
-        })}
-        onClick={() => {
-          if (status === STATUS_INACTIVE) {
-            try {
-              recognition.current?.start();
-            } catch (error) {
-              console.error(error);
-              recognition.current?.stop();
-            }
-          } else if (status === STATUS_ACTIVE) {
-            try {
-              recognition.current?.stop();
-            } catch (error) {
-              console.error(error);
-            }
-          } else {
-            setStatusOpen((isOpen) => !isOpen);
-          }
-        }}
+      <Status
+        status={status}
+        isBlinking={status === STATUS_ACTIVE}
+        onClickNonErrorStatus={toggleRecognition}
       >
-        <span>
-          {status === STATUS_ACTIVE
-            ? "Microphone recording (stop)"
-            : status === STATUS_INACTIVE
-            ? "Microphone not active (start)"
-            : status}
-        </span>
-      </div>
+        {status === STATUS_ACTIVE
+          ? "Microphone recording (stop)"
+          : status === STATUS_INACTIVE
+          ? "Microphone not active (start)"
+          : status}
+      </Status>
       <Cuboid
-        style={{
-          transform: `rotateX(${rotations[0]}deg) rotateY(${rotations[1]}deg) rotateZ(${rotations[2]}deg)`,
-          transitionDuration: "300ms",
-          marginBottom: -52,
-        }}
+        rotations={rotations}
+        style={{ transitionDuration: "300ms", marginBottom: -52 }}
       />
       <p>Talk to me.</p>
       {transcript ? (
-        <p
-          style={{
-            color: "gray",
-          }}
-        >
+        <p style={{ color: "gray" }}>
           I understood: "{transcript}" ({Math.round(confidence * 100)} %)
         </p>
       ) : (
         <p>&nbsp;</p>
       )}
-    </div>
+    </Flex>
   );
 };

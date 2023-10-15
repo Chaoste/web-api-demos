@@ -1,8 +1,8 @@
 import React, { useCallback } from "react";
 import { Button, Notification, Stack } from "@contentful/f36-components";
 import { EnvironmentIcon } from "@contentful/f36-icons";
-import { SlideHeader } from "../base/SlideHeader";
-import shareScreenshot from "../compatibility/share.png";
+import { SlideHeader } from "../core/SlideHeader";
+import shareScreenshot from "../../compatibility/share.png";
 import { PAGE_TITLE } from "../../constants";
 
 const SHARE_DATA = {

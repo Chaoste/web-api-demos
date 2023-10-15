@@ -23,7 +23,12 @@ export const SlideHeader = ({
 }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   return (
-    <Heading as="h2" marginBottom={marginBottom} className={styles.root}>
+    <Heading
+      as="h2"
+      marginBottom={marginBottom}
+      marginTop="spacingXl"
+      className={styles.root}
+    >
       {title}
       <InfoCircleIcon
         variant="muted"

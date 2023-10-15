@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { styles } from "./Cuboid.styles";
-import { cx } from "@emotion/css";
 import * as THREE from "three";
-import { Cuboid } from "./Cuboid";
-import { SlideHeader } from "../base/SlideHeader";
-import orientationScreenshot from "../compatibility/orientation.png";
+import { Cuboid } from "../core/Cuboid";
+import { SlideHeader } from "../core/SlideHeader";
+import orientationScreenshot from "../../compatibility/orientation.png";
+import { STATUS_INACTIVE } from "../../constants";
+import { Status } from "../core/Status";
+import { Flex } from "@contentful/f36-components";
 
 export const OrientationSensorSlide = () => {
   const [rotations, setRotations] = React.useState<[number, number, number]>([
@@ -12,7 +13,6 @@ export const OrientationSensorSlide = () => {
   ]);
   const initialRotations = React.useRef<typeof rotations>();
   const [status, setStatus] = React.useState<undefined | true | string>();
-  const [isStatusOpen, setStatusOpen] = React.useState(false);
 
   useEffect(() => {
     try {
@@ -73,35 +73,21 @@ export const OrientationSensorSlide = () => {
   }, []);
 
   return (
-    <div className={styles.root}>
+    <Flex flexDirection="column" alignItems="center" justifyContent="center">
       <SlideHeader
         title="Orientation Sensor"
         link="https://developer.mozilla.org/en-US/docs/Web/API/AbsoluteOrientationSensor#browser_compatibility"
         imgSrc={orientationScreenshot}
       />
-      <div
-        className={cx(styles.status, {
-          [styles.statusLoading]: status === undefined,
-          [styles.statusBlinking]: status === undefined,
-          [styles.statusSuccess]: status === true,
-          [styles.statusOpen]: isStatusOpen,
-        })}
-        onClick={() => setStatusOpen((isOpen) => !isOpen)}
-      >
-        <span>
-          {status === true
-            ? "Sensor Connected"
-            : status === undefined
-            ? "Connecting..."
-            : status}
-        </span>
-      </div>
-      <Cuboid
-        style={{
-          transform: `rotateX(${rotations[0]}deg) rotateY(${rotations[1]}deg) rotateZ(${rotations[2]}deg)`,
-        }}
-      />
+      <Status status={status} isBlinking={status === STATUS_INACTIVE}>
+        {status === true
+          ? "Sensor Connected"
+          : status === undefined
+          ? "Connecting..."
+          : status}
+      </Status>
+      <Cuboid rotations={rotations} />
       <p>Tilt your phone.</p>
-    </div>
+    </Flex>
   );
 };

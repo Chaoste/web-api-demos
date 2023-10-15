@@ -10,11 +10,18 @@ export const Cuboid = (
   props: React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
-  >
+  > & { rotations: [number, number, number] }
 ) => {
   return (
     <div className={styles.cuboidWrapper}>
-      <div className={styles.cuboid} {...props}>
+      <div
+        className={styles.cuboid}
+        {...props}
+        style={{
+          transform: `rotateX(${props.rotations[0]}deg) rotateY(${props.rotations[1]}deg) rotateZ(${props.rotations[2]}deg)`,
+          ...props.style,
+        }}
+      >
         <div className={styles.side}></div>
         <div className={styles.side}></div>
         <div className={styles.side}></div>

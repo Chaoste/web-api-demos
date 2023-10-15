@@ -1,71 +1,9 @@
-import { css, keyframes } from "@emotion/css";
+import { css } from "@emotion/css";
 
-const blinking = keyframes`
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-`
-
-// Inspritations:
+// Inspiritations:
 // - https://css-tricks.com/css-in-3d-learning-to-think-in-cubes-instead-of-boxes/
 // - https://css-tricks.com/simplifying-css-cubes-custom-properties/
 export const styles = {
-  root: css({
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-  }),
-  status: css({
-    position: 'absolute',
-    top: 64,
-    left: 16,
-    padding: 6,
-    borderRadius: 8,
-    maxWidth: '250px',
-    border: '1px solid lightgray',
-    whiteSpace: 'nowrap',
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    cursor: 'pointer',
-    boxShadow: '2px 2px 5px gray',
-    zIndex: 5,
-    background: 'white',
-    '&:before': {
-      backgroundColor: 'red',
-      content: '""',
-      display: "inline-block",
-      height: 15,
-      width: 15,
-      borderRadius: "100%",
-      marginBottom: -2,
-      marginRight: 8,
-    }
-  }),
-  statusOpen: css({
-    whiteSpace: 'initial',
-  }),
-  statusLoading: css({
-    whiteSpace: 'initial',
-    '&:before': {
-      backgroundColor: 'yellow',
-    }
-  }),
-  statusSuccess: css({
-    whiteSpace: 'initial',
-    '&:before': {
-      backgroundColor: 'green',
-    }
-  }),
-  statusBlinking: css({
-    '&:before': {
-      animation: `${blinking} 1.5s ease-in-out infinite`,
-      animationDirection: "alternate",
-    }
-  }),
   cuboid: css({
     "--width": "100px",
     "--height": "100px",
@@ -90,7 +28,7 @@ export const styles = {
     // border: "1px solid hsla(0, 0%, 10%)",
     position: "absolute",
     "&:nth-of-type(1), &:nth-of-type(2)": {
-      "--gradient-angle": `${Math.floor(Math.random() * 360)}deg`,
+      "--gradient-angle": "224deg",
       "--gradient-stops": "#feffaa, #b2ff90",
       "--coefficient": -0.5,
       width: "var(--width)",
@@ -98,12 +36,12 @@ export const styles = {
       transform: "translate3d(0, 0, calc(var(--depth) * var(--coefficient)))",
     },
     "&:nth-of-type(2)": {
-      "--gradient-angle": `${Math.floor(Math.random() * 360)}deg`,
-      "--gradient-stops": "#fbc2eb, #a6c1ee",
+      "--gradient-angle": "138deg",
+      "--gradient-stops": "#f6d365, #fda085",
       "--coefficient": 0.5,
     },
     "&:nth-of-type(3), &:nth-of-type(4)": {
-      "--gradient-angle": `${Math.floor(Math.random() * 360)}deg`,
+      "--gradient-angle": "114deg",
       "--gradient-stops": "#84fab0, #8fd3f4",
       "--rotation": "90deg",
       height: "var(--height)",
@@ -114,13 +52,13 @@ export const styles = {
         "translate(-50%, -50%) rotateY(var(--rotation)) translate3d(0, 0, calc(var(--width) * -0.5))",
     },
     "&:nth-of-type(4)": {
-      "--gradient-angle": `${Math.floor(Math.random() * 360)}deg`,
+      "--gradient-angle": "58deg",
       "--gradient-stops": "#a1c4fd, #c2e9fb",
       "--rotation": "-90deg",
     },
     "&:nth-of-type(5), &:nth-of-type(6)": {
-      "--gradient-angle": `${Math.floor(Math.random() * 360)}deg`,
-      "--gradient-stops": "#f6d365, #fda085",
+      "--gradient-angle": "208deg",
+      "--gradient-stops": "#fbc2eb, #a6c1ee",
       "--rotation": "-90deg",
       height: "var(--depth)",
       width: "var(--width)",
@@ -130,7 +68,7 @@ export const styles = {
         "translate(-50%, -50%) rotateX(var(--rotation)) translate3d(0, 0, calc(var(--width) * -0.5))",
     },
     "&:nth-of-type(6)": {
-      "--gradient-angle": `${Math.floor(Math.random() * 360)}deg`,
+      "--gradient-angle": "32deg",
       "--gradient-stops": "#ffecd2, #fcb69f",
       "--rotation": "90deg",
     },
