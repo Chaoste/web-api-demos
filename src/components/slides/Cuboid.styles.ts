@@ -77,10 +77,12 @@ export const styles = {
     transition: 'transform 100ms ease-in-out',
     transformStyle: "preserve-3d",
     willChange: "transform",
+    zIndex: -1,
   }),
   cuboidWrapper: css({
     position: "relative",
     marginBottom: "100px",
+    zIndex: 0,
   }),
   side: css({
     backgroundColor: "hsla(0, 0%, 100%, 0.2)",

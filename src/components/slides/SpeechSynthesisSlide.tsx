@@ -19,7 +19,7 @@ const STATUS_INACTIVE = undefined;
 
 export const SpeechSynthesisSlide = () => {
   const [rotations, setRotations] = React.useState<[number, number, number]>([
-    0, 0, 0,
+    -5, -10, 0,
   ]);
   const [status, setStatus] = React.useState<undefined | true | string>();
   const [isStatusOpen, setStatusOpen] = React.useState(false);

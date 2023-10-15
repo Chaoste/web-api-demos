@@ -38,7 +38,7 @@ const createSpeechRecognition = () => {
 
 export const SpeechRecognitionSlide = () => {
   const [rotations, setRotations] = React.useState<[number, number, number]>([
-    0, 0, 0,
+    -5, -10, 0,
   ]);
   const [status, setStatus] = React.useState<undefined | true | string>(
     STATUS_INACTIVE

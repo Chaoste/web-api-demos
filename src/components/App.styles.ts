@@ -12,6 +12,7 @@ export const styles = {
     padding: 16,
     fontSize: "125%",
     color: "#999",
+    background: "white",
   }),
   desktopOnly: css({
     display: "block",

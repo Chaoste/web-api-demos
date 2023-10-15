@@ -27,6 +27,7 @@ export const styles = {
   }),
   modal: css({
     height: "auto !important",
+    transformStyle: "preserve-3d",
   }),
   link: css({
     display: "flex !important",
