@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Cuboid } from "../core/Cuboid";
 import { applyDirection } from "../utils";
 import { SlideHeader } from "../core/SlideHeader";

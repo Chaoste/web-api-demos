@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
-import { OrientationSensorSlide } from "./slides/OrientationSensorSlide";
 import { Heading, IconButton } from "@contentful/f36-components";
 import { ArrowBackwardIcon, ArrowForwardIcon } from "@contentful/f36-icons";
 import { styles } from "./App.styles";
 import { cx } from "@emotion/css";
-import { CopyPasteSlide } from "./slides/CopyPasteSlide";
-import { SpeechRecognitionSlide } from "./slides/SpeechRecognitionSlide";
-import { SpeechSynthesisSlide } from "./slides/SpeechSynthesisSlide";
-import { ShareSlide } from "./slides/ShareSlide";
-
-const MAX_SLIDES = 6;
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { MAX_SLIDES, Slide } from "./Slide";
 
 function App() {
-  const [slideIndex, setSlideIndex] = useState(0);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const slideIndex = Number.parseInt(
+    location.pathname.match(/\/slides\/(\d+)/)?.[1] ?? "0"
+  );
+
   return (
     <div className="App">
       {slideIndex !== 0 && (
@@ -27,22 +27,22 @@ function App() {
         </div>
       )}
       <div className={styles.playground}>
-        {slideIndex === 0 && (
-          <Heading as="h1">Web APIs - How cool is that?</Heading>
-        )}
-
-        {slideIndex === 1 && <CopyPasteSlide />}
-        {slideIndex === 2 && <OrientationSensorSlide />}
-        {slideIndex === 3 && <SpeechRecognitionSlide />}
-        {slideIndex === 4 && <SpeechSynthesisSlide />}
-        {slideIndex === 5 && <ShareSlide />}
+        <Routes>
+          <Route
+            index
+            element={<Heading as="h1">Web APIs - How cool is that?</Heading>}
+          />
+          <Route element={<Slide />} path="/slides/:slideIndex" />
+        </Routes>
       </div>
       <div className={styles.navigationBar}>
         <IconButton
           variant="transparent"
           aria-label="Previous slide"
           icon={<ArrowBackwardIcon />}
-          onClick={() => setSlideIndex((slideIndex) => slideIndex - 1)}
+          onClick={() =>
+            navigate(slideIndex <= 1 ? "/" : `/slides/${slideIndex - 1}`)
+          }
           className={cx({ [styles.hidden]: slideIndex === 0 })}
         />
         <progress max={MAX_SLIDES} value={slideIndex}></progress>
@@ -50,7 +50,11 @@ function App() {
           variant="transparent"
           aria-label="Next slide"
           icon={<ArrowForwardIcon />}
-          onClick={() => setSlideIndex((slideIndex) => slideIndex + 1)}
+          onClick={() =>
+            navigate(
+              slideIndex > MAX_SLIDES - 1 ? "/" : `/slides/${slideIndex + 1}`
+            )
+          }
           className={cx({ [styles.hidden]: slideIndex === MAX_SLIDES })}
         />
       </div>
