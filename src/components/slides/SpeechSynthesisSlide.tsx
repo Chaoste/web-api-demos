@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { styles } from "./SpeechSynthesisSlide.styles";
 import { Cuboid } from "../core/Cuboid";
 import { Flex, IconButton } from "@contentful/f36-components";
@@ -15,10 +15,10 @@ import { STATUS_ACTIVE, STATUS_INACTIVE } from "../../constants";
 import { Status } from "../core/Status";
 
 export const SpeechSynthesisSlide = () => {
-  const [rotations, setRotations] = React.useState<[number, number, number]>([
+  const [rotations, setRotations] = useState<[number, number, number]>([
     -5, -10, 0,
   ]);
-  const [status, setStatus] = React.useState<undefined | true | string>();
+  const [status, setStatus] = useState<undefined | true | string>();
 
   const speak = useCallback((text: string) => {
     try {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { Cuboid } from "../core/Cuboid";
 import { SlideHeader } from "../core/SlideHeader";
@@ -8,11 +8,11 @@ import { Status } from "../core/Status";
 import { Flex } from "@contentful/f36-components";
 
 export const OrientationSensorSlide = () => {
-  const [rotations, setRotations] = React.useState<[number, number, number]>([
+  const [rotations, setRotations] = useState<[number, number, number]>([
     -5, -10, 0,
   ]);
-  const initialRotations = React.useRef<typeof rotations>();
-  const [status, setStatus] = React.useState<undefined | true | string>();
+  const initialRotations = useRef<typeof rotations>();
+  const [status, setStatus] = useState<undefined | true | string>();
 
   useEffect(() => {
     try {

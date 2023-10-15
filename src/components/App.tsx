@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { OrientationSensorSlide } from "./slides/OrientationSensorSlide";
 import { Heading, IconButton } from "@contentful/f36-components";
@@ -13,7 +13,7 @@ import { ShareSlide } from "./slides/ShareSlide";
 const MAX_SLIDES = 6;
 
 function App() {
-  const [slideIndex, setSlideIndex] = React.useState(0);
+  const [slideIndex, setSlideIndex] = useState(0);
   return (
     <div className="App">
       {slideIndex !== 0 && (

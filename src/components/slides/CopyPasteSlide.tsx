@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import {
   Button,
   TextInput,
@@ -10,7 +10,7 @@ import { SlideHeader } from "../core/SlideHeader";
 import clipboardScreenshot from "../../compatibility/clipboard.png";
 
 export const CopyPasteSlide = () => {
-  const [inputText, setInputText] = React.useState("Hello World");
+  const [inputText, setInputText] = useState("Hello World");
 
   const copyTextToClipboard = useCallback(async () => {
     try {

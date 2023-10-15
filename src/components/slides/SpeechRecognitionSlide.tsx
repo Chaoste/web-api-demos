@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Cuboid } from "../core/Cuboid";
 import { applyDirection } from "../utils";
 import { SlideHeader } from "../core/SlideHeader";
@@ -36,15 +36,15 @@ const createSpeechRecognition = () => {
 };
 
 export const SpeechRecognitionSlide = () => {
-  const [rotations, setRotations] = React.useState<[number, number, number]>([
+  const [rotations, setRotations] = useState<[number, number, number]>([
     -5, -10, 0,
   ]);
-  const [status, setStatus] = React.useState<undefined | true | string>(
+  const [status, setStatus] = useState<undefined | true | string>(
     STATUS_INACTIVE
   );
-  const [transcript, setTranscript] = React.useState<string>();
-  const [confidence, setConfidence] = React.useState<number>(0);
-  const recognition = React.useRef<any>();
+  const [transcript, setTranscript] = useState<string>();
+  const [confidence, setConfidence] = useState<number>(0);
+  const recognition = useRef<any>();
 
   useEffect(() => {
     try {
