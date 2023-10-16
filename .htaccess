@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# If the request has already been rewritten
+# Or maps to an existing file then stop here.
+# (Can't test for dir here since would not rewrite the doc root)
+RewriteCond %{ENV:REDIRECT_STATUS} . [OR]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# No file extension on request then append .php and rewrite to subdir
+RewriteCond %{REQUEST_URI} /web/slides/(.+)
+RewriteRule (.*) /web/index.html [L]

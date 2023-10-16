@@ -2,15 +2,40 @@ import React, { useEffect, useState } from "react";
 import { Cuboid } from "../core/Cuboid";
 import { SlideHeader } from "../core/SlideHeader";
 import orientationScreenshot from "../../compatibility/orientation.png";
-import { STATUS_INACTIVE } from "../../constants";
+import { STATUS_ACTIVE, STATUS_INACTIVE } from "../../constants";
 import { Status } from "../core/Status";
-import { Flex } from "@contentful/f36-components";
+import { Button, Flex } from "@contentful/f36-components";
 
 type Rotations = [number, number, number];
+
+// Safari-only -> requestPermission
+const isPermissionRequired = () =>
+  window.DeviceOrientationEvent &&
+  "requestPermission" in window.DeviceOrientationEvent;
 
 export const OrientationSensorSlide = () => {
   const [rotations, setRotations] = useState<Rotations>([-5, -10, 0]);
   const [status, setStatus] = useState<undefined | true | string>();
+  const [isAttached, setAttached] = useState(false);
+
+  const handleOrientation = (event: DeviceOrientationEvent) => {
+    const rotateDegrees = event.alpha ?? -5; // alpha: rotation around z-axis
+    const leftToRight = event.gamma ?? -10; // gamma: left to right
+    const frontToBack = event.beta ?? 0; // beta: front back motion
+    setRotations([-frontToBack, leftToRight, rotateDegrees]);
+    setStatus(STATUS_ACTIVE);
+  };
+
+  const attachListener = async () => {
+    try {
+      // Should return "granted"
+      await (window.DeviceOrientationEvent as any).requestPermission();
+      window.addEventListener("deviceorientation", handleOrientation, true);
+      setAttached(true);
+    } catch (error) {
+      setStatus(`Failed initialising sensor: ${error}`);
+    }
+  };
 
   useEffect(() => {
     try {
@@ -18,17 +43,9 @@ export const OrientationSensorSlide = () => {
         setStatus(`DeviceOrientationEvent is not available`);
         return;
       }
-      window.addEventListener(
-        "deviceorientation",
-        (event) => {
-          const rotateDegrees = event.alpha ?? -5; // alpha: rotation around z-axis
-          const leftToRight = event.gamma ?? -10; // gamma: left to right
-          const frontToBack = event.beta ?? 0; // beta: front back motion
-
-          setRotations([-frontToBack, leftToRight, rotateDegrees]);
-        },
-        true
-      );
+      if (!isPermissionRequired()) {
+        window.addEventListener("deviceorientation", handleOrientation, true);
+      }
     } catch (error) {
       setStatus(`Failed initialising sensor: ${error}`);
     }
@@ -49,7 +66,13 @@ export const OrientationSensorSlide = () => {
           : status}
       </Status>
       <Cuboid rotations={rotations} />
-      <p>Tilt your phone.</p>
+      {isPermissionRequired() && !isAttached ? (
+        <Button onClick={attachListener} isDisabled={isAttached}>
+          Grant Permission
+        </Button>
+      ) : (
+        <p>Tilt your phone.</p>
+      )}
     </Flex>
   );
 };
