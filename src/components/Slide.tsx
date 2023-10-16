@@ -14,10 +14,10 @@ export const Slide = () => {
   return (
     <div>
       {slideIndex === 1 && <CopyPasteSlide />}
-      {slideIndex === 2 && <OrientationSensorSlide />}
-      {slideIndex === 3 && <SpeechRecognitionSlide />}
-      {slideIndex === 4 && <SpeechSynthesisSlide />}
-      {slideIndex === 5 && <ShareSlide />}
+      {slideIndex === 2 && <ShareSlide />}
+      {slideIndex === 3 && <OrientationSensorSlide />}
+      {slideIndex === 4 && <SpeechRecognitionSlide />}
+      {slideIndex === 5 && <SpeechSynthesisSlide />}
       {slideIndex < 1 && <Navigate to="/" />}
       {slideIndex > MAX_SLIDES && <Navigate to="/" />}
     </div>

@@ -53,11 +53,11 @@ export const CopyPasteSlide = () => {
       <Button startIcon={<CopyIcon />} onClick={copyTextToClipboard}>
         Copy
       </Button>
-      <Button startIcon={<PageIcon />} onClick={pasteTextFromClipboard}>
-        Paste
-      </Button>
       <Button startIcon={<DeleteIcon />} onClick={() => setInputText("")}>
         Clear
+      </Button>
+      <Button startIcon={<PageIcon />} onClick={pasteTextFromClipboard}>
+        Paste
       </Button>
     </Flex>
   );
