@@ -12,10 +12,3 @@ A demonstration of the latest web APIs
 - Share API (Demo: share link to this page)
 
 Optional: PWA, Battery, Server Sent Events, Geolocation (Demo: show a map and the users position on it)
-
-## TODO
-
-- Working Router
-- Demonstrate on peoples phones
-- Render code snippets in the app
-- Carousel

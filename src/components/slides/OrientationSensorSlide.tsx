@@ -6,10 +6,10 @@ import { STATUS_INACTIVE } from "../../constants";
 import { Status } from "../core/Status";
 import { Flex } from "@contentful/f36-components";
 
+type Rotations = [number, number, number];
+
 export const OrientationSensorSlide = () => {
-  const [rotations, setRotations] = useState<[number, number, number]>([
-    -5, -10, 0,
-  ]);
+  const [rotations, setRotations] = useState<Rotations>([-5, -10, 0]);
   const [status, setStatus] = useState<undefined | true | string>();
 
   useEffect(() => {

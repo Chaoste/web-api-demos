@@ -56,10 +56,10 @@ export const SpeechRecognitionSlide = () => {
         setStatus((status) => (status === true ? STATUS_INACTIVE : status));
       });
       recognition.current.addEventListener("nomatch", (event: any) => {
-        console.log("Did not understand!", event);
+        console.debug("Did not understand!", event);
       });
       recognition.current.addEventListener("error", (event: any) => {
-        console.log("Error occured!", event);
+        console.error("Error occured!", event);
         setStatus(`Speech recognition failed: ${event.error}`);
         recognition.current.stop();
       });
@@ -84,7 +84,7 @@ export const SpeechRecognitionSlide = () => {
         const results = event.results;
         const currentResult = results[results.length - 1][0];
         const currentTranscript = currentResult.transcript.trim();
-        console.log(`Result received: ${currentTranscript}`, results);
+        console.debug(`Result received: ${currentTranscript}`, results);
         setTranscript(currentTranscript);
         setConfidence(currentResult.confidence);
         if (currentTranscript.includes("stop")) {
