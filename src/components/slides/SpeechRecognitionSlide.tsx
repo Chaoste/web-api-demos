@@ -53,7 +53,7 @@ export const SpeechRecognitionSlide = () => {
         setStatus(STATUS_ACTIVE);
       });
       recognition.current.addEventListener("end", () => {
-        setStatus(STATUS_INACTIVE);
+        setStatus((status) => (status === true ? STATUS_INACTIVE : status));
       });
       recognition.current.addEventListener("nomatch", (event: any) => {
         console.log("Did not understand!", event);

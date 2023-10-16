@@ -12,7 +12,7 @@ export const styles = {
     height: "var(--height)",
     position: "relative",
     transform: "rotateX(-14deg) rotateY(-22deg) rotateZ(0deg)",
-    transition: 'transform 100ms ease-in-out',
+    transition: "transform 0ms ease-in-out",
     transformStyle: "preserve-3d",
     willChange: "transform",
     zIndex: -1,

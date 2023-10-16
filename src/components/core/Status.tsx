@@ -17,6 +17,7 @@ export const Status = ({
   const [isStatusOpen, setStatusOpen] = useState(false);
   const isLoading = status === STATUS_INACTIVE;
   const isSuccess = status === STATUS_ACTIVE;
+  const isError = !isLoading && !isSuccess;
 
   return (
     <div
@@ -27,7 +28,7 @@ export const Status = ({
         [styles.statusOpen]: isStatusOpen,
       })}
       onClick={() => {
-        if (!isLoading && !isSuccess && onClickNonErrorStatus) {
+        if (!isError && onClickNonErrorStatus) {
           onClickNonErrorStatus();
         } else {
           setStatusOpen((isOpen) => !isOpen);
