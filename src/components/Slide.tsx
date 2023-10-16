@@ -18,6 +18,7 @@ export const Slide = () => {
       {slideIndex === 3 && <OrientationSensorSlide />}
       {slideIndex === 4 && <SpeechRecognitionSlide />}
       {slideIndex === 5 && <SpeechSynthesisSlide />}
+      {slideIndex === 6 && <div>TODO</div>}
       {slideIndex < 1 && <Navigate to="/" />}
       {slideIndex > MAX_SLIDES && <Navigate to="/" />}
     </div>

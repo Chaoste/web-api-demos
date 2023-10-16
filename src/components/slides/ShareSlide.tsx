@@ -8,7 +8,7 @@ import { PAGE_TITLE } from "../../constants";
 const SHARE_DATA = {
   title: PAGE_TITLE,
   text: "Check out these five exemplary Web APIs that will make your life easier!",
-  url: window.location.href,
+  url: window.location.href.replace(/\/slides(.*)/, ""),
 };
 
 export const ShareSlide = () => {
