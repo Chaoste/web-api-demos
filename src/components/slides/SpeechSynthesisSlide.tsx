@@ -25,8 +25,10 @@ export const SpeechSynthesisSlide = () => {
     try {
       if ("speechSynthesis" in window) {
         await EasySpeech.init({ maxTimeout: 5000, interval: 250 });
-        EasySpeech.voices().filter((voice) => voice.lang === "de-DE");
-        await EasySpeech.speak({ text, rate: 1, volume: 0.6, pitch: 1 });
+        const voice = EasySpeech.voices().find(
+          (voice) => voice.lang.startsWith("en") && voice.default
+        );
+        await EasySpeech.speak({ text, rate: 1, volume: 0.6, pitch: 1, voice });
       } else {
         setStatus(`Failed initialising speech synthesis`);
       }
