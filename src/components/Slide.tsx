@@ -6,7 +6,7 @@ import { SpeechRecognitionSlide } from "./slides/SpeechRecognitionSlide";
 import { SpeechSynthesisSlide } from "./slides/SpeechSynthesisSlide";
 import { ShareSlide } from "./slides/ShareSlide";
 
-export const MAX_SLIDES = 6;
+export const MAX_SLIDES = 5;
 
 export const Slide = () => {
   const params = useParams();
@@ -18,7 +18,7 @@ export const Slide = () => {
       {slideIndex === 3 && <OrientationSensorSlide />}
       {slideIndex === 4 && <SpeechRecognitionSlide />}
       {slideIndex === 5 && <SpeechSynthesisSlide />}
-      {slideIndex === 6 && <div>TODO</div>}
+      {/* {slideIndex === 6 && <div>TODO</div>} */}
       {slideIndex < 1 && <Navigate to="/" />}
       {slideIndex > MAX_SLIDES && <Navigate to="/" />}
     </div>
