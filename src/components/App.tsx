@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Heading, IconButton } from "@contentful/f36-components";
 import { ArrowBackwardIcon, ArrowForwardIcon } from "@contentful/f36-icons";
