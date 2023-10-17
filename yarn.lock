@@ -4809,6 +4809,11 @@ duplexer@^0.1.2:
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.2.tgz#3abe43aef3835f8ae077d136ddce0f276b0400e6"
   integrity sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==
 
+easy-speech@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/easy-speech/-/easy-speech-2.1.1.tgz#6c50251057a863d42cace35d7e0259acbbaa4112"
+  integrity sha512-/Nh2SxkQc3aIdrCnagDbuaUAxuZuSVrEI00Jp1Kg8aQaD04socTjVDsyKZ/yw483q1nZC3CQ9IB7vMCnSY2LTQ==
+
 ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"

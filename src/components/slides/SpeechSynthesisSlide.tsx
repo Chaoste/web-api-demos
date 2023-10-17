@@ -13,6 +13,7 @@ import { applyDirection } from "../utils";
 import { SlideHeader } from "../core/SlideHeader";
 import { STATUS_ACTIVE, STATUS_INACTIVE } from "../../constants";
 import { Status } from "../core/Status";
+import EasySpeech from "easy-speech";
 
 export const SpeechSynthesisSlide = () => {
   const [rotations, setRotations] = useState<[number, number, number]>([
@@ -20,10 +21,12 @@ export const SpeechSynthesisSlide = () => {
   ]);
   const [status, setStatus] = useState<undefined | true | string>();
 
-  const speak = useCallback((text: string) => {
+  const speak = useCallback(async (text: string) => {
     try {
       if ("speechSynthesis" in window) {
-        window.speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+        await EasySpeech.init({ maxTimeout: 5000, interval: 250 });
+        EasySpeech.voices().filter((voice) => voice.lang === "de-DE");
+        await EasySpeech.speak({ text, rate: 1, volume: 0.6, pitch: 1 });
       } else {
         setStatus(`Failed initialising speech synthesis`);
       }
