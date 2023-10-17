@@ -1,5 +1,5 @@
 import { css } from "@emotion/css";
-import tokens from '@contentful/f36-tokens';
+import tokens from "@contentful/f36-tokens";
 
 export const styles = {
   root: css({
@@ -8,7 +8,11 @@ export const styles = {
   }),
   infoIcon: css({
     marginLeft: tokens.spacingM,
-    cursor: 'pointer',
+    cursor: "pointer",
+    opacity: 0.6,
+    ":hover, :active, :focus": {
+      opacity: 1,
+    },
   }),
   img: css({
     display: "block",
@@ -20,7 +24,7 @@ export const styles = {
       marginLeft: "-16px",
       marginRight: "-16px",
       width: "calc(100% + 32px)",
-    }
+    },
   }),
   modalContent: css({
     // textAlign: "right",
@@ -32,5 +36,5 @@ export const styles = {
   link: css({
     display: "flex !important",
     justifyContent: "flex-end !important",
-  })
-}
+  }),
+};

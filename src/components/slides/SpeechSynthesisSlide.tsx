@@ -67,6 +67,7 @@ export const SpeechSynthesisSlide = () => {
         imgSrc={speechSynthesisScreenshot}
         marginBottom="spacing2Xl"
         howToSrc="https://dev.to/jankapunkt/cross-browser-speech-synthesis-the-hard-way-and-the-easy-way-353"
+        imgDate="2023-10-16"
       />
       <Status status={status} isBlinking={status === STATUS_ACTIVE}>
         {status === STATUS_INACTIVE

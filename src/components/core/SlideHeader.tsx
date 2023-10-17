@@ -5,6 +5,7 @@ import {
   HeadingProps,
   Modal,
   TextLink,
+  Text,
 } from "@contentful/f36-components";
 import { ExternalLinkIcon, InfoCircleIcon } from "@contentful/f36-icons";
 
@@ -12,12 +13,14 @@ export const SlideHeader = ({
   title,
   link,
   imgSrc,
+  imgDate,
   howToSrc,
   marginBottom = "spacingL",
 }: {
   title: string;
   link: string;
   imgSrc: string;
+  imgDate: string;
   howToSrc?: string;
   marginBottom?: HeadingProps["marginBottom"];
 }) => {
@@ -55,6 +58,9 @@ export const SlideHeader = ({
                 alt={`Compatibility for ${title}`}
                 className={styles.img}
               />
+              <Text className={styles.link} fontColor="gray500">
+                Screenshot taken at {imgDate}
+              </Text>
               <TextLink
                 icon={<ExternalLinkIcon />}
                 alignIcon="end"

@@ -6,6 +6,7 @@ import { styles } from "./App.styles";
 import { cx } from "@emotion/css";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { MAX_SLIDES, Slide } from "./Slide";
+import { GithubIcon } from "./GithubIcon";
 
 function App() {
   const location = useLocation();
@@ -21,9 +22,15 @@ function App() {
           <span className={styles.desktopOnly}>
             Web APIs - How cool is that?
           </span>
-          <span className={styles.desktopOnly}>Thomas Kellermeier</span>
+          <span className={styles.desktopOnly}>
+            <GithubIcon />
+            Thomas Kellermeier
+          </span>
           <span className={styles.mobileOnly}>Web APIs</span>
-          <span className={styles.mobileOnly}>Thomas K.</span>
+          <span className={styles.mobileOnly}>
+            <GithubIcon />
+            Thomas K.
+          </span>
         </div>
       )}
       <div className={styles.playground}>

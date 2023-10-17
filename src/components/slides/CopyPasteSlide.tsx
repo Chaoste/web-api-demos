@@ -45,6 +45,7 @@ export const CopyPasteSlide = () => {
         title="Clipboard API"
         link="https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API#browser_compatibility"
         imgSrc={clipboardScreenshot}
+        imgDate="2023-10-16"
       />
       <TextInput
         value={inputText}

@@ -125,6 +125,7 @@ export const SpeechRecognitionSlide = () => {
         title="Speech Recognition"
         link="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API#api.speechrecognition"
         imgSrc={speechRecognitionScreenshot}
+        imgDate="2023-10-16"
       />
       <Status
         status={status}

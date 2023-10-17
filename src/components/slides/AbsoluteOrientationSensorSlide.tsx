@@ -92,6 +92,7 @@ export const AbsoluteOrientationSensorSlide = () => {
         title="Orientation Sensor"
         link="https://developer.mozilla.org/en-US/docs/Web/API/AbsoluteOrientationSensor#browser_compatibility"
         imgSrc={orientationScreenshot}
+        imgDate="2023-10-16"
       />
       <Status status={status} isBlinking={status === STATUS_INACTIVE}>
         {status === true

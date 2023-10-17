@@ -26,6 +26,7 @@ export const ShareSlide = () => {
         title="Share API"
         link="https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API#browser_compatibility"
         imgSrc={shareScreenshot}
+        imgDate="2023-10-16"
       />
       <Button startIcon={<EnvironmentIcon />} onClick={share}>
         Sharing is caring
